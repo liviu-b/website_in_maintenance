@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We'll Be Right Back!</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #ffecd2;
+      overflow: hidden;
+    }
+
+    #container {
+      text-align: center;
+      padding: 40px;
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 0;
+      color: #ff6347;
+      text-transform: uppercase;
+      animation: colorChange 3s infinite;
+    }
+
+    p {
+      font-size: 1.3em;
+      color: #333333;
+    }
+
+    #bubble {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-color: #ff6347;
+      border-radius: 50%;
+      bottom: -50px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        bottom: -50px;
+        left: 20%;
+        transform: scale(1);
+      }
+      50% {
+        bottom: 80%;
+        left: 40%;
+        transform: scale(1.5);
+      }
+      100% {
+        bottom: -50px;
+        left: 70%;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes colorChange {
+      0%, 100% {
+        color: #ff6347;
+      }
+      50% {
+        color: #f5a623;
+      }
+    }
+
+    @keyframes textBounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    h1 {
+      animation: textBounce 2s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>We'll be right back!</h1>
+    <p>Our website is getting a little love. Sit tight, grab a coffee ☕, and we'll be back online soon!</p>
+  </div>
+
+  <!-- Floating bubbles animation -->
+  <div id="bubble"></div>
+
+  <script>
+    // Add more bubbles dynamically
+    for (let i = 0; i < 5; i++) {
+      let bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.style.animationDelay = `${i * 2}s`;
+      document.body.appendChild(bubble);
+    }
+
+    // Animate bubbles
+    const bubbles = document.querySelectorAll('.bubble');
+    bubbles.forEach(bubble => {
+      bubble.style.animation = `float ${Math.random() * 3 + 3}s ease-in-out infinite`;
+      bubble.style.backgroundColor = getRandomColor();
+    });
+
+    // Random color generator for bubbles
+    function getRandomColor() {
+      const colors = ['#ff6347', '#f5a623', '#ffec57', '#4fc3f7', '#81c784'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+  </script>
+</body>
+</html>
